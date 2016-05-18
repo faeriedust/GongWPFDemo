@@ -1,0 +1,3 @@
+[submodule "lib/GongWPF"]
+	path = lib/GongWPF
+	url = https://github.com/faeriedust/gong-wpf-dragdrop
