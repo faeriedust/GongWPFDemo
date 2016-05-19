@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -10,7 +11,7 @@ namespace GongWPFDemo.DropHandlers {
     internal class JobListViewDragHandler : IDropTarget {
         public JobListViewDragHandler() { }
         public bool CanDrop(IDropInfo dropInfo) {
-            return dropInfo.Data is JobViewModel;
+            return dropInfo.Data is JobViewModel && dropInfo.TargetCollection is ObservableCollection<JobViewModel>;
         }
         public void DragOver(IDropInfo dropInfo) {
             if (this.CanDrop(dropInfo)) {
@@ -22,8 +23,16 @@ namespace GongWPFDemo.DropHandlers {
         }
         public void Drop(IDropInfo dropInfo) {
             if (this.CanDrop(dropInfo)) {
-                var myCollection = (ICollection<JobViewModel>) dropInfo.TargetCollection;
-                var insertionItem = (JobViewModel) dropInfo.Data;
+                var myCollection = (ObservableCollection<TaskViewModel>) dropInfo.TargetCollection;
+                var moveItem = (TaskViewModel) dropInfo.Data;
+                int insertionIndex = dropInfo.InsertIndex;
+                if (myCollection.Contains(moveItem)) {
+                    if (myCollection.IndexOf(moveItem) > insertionIndex) {
+                        insertionIndex--;
+                    }
+                    myCollection.Remove(moveItem);
+                }
+                myCollection.Insert(insertionIndex, moveItem);
             }
         }
     }
