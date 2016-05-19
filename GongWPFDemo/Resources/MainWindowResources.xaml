@@ -1,31 +1,44 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:m="clr-namespace:GongWPFDemo.ViewModels"
-                    xmlns:local="clr-namespace:GongWPFDemo.Resources">
-  <DataTemplate DataType="{x:Type m:MainWindowViewModel}">
-    <ContentControl Content="{Binding JobList}"/>
-  </DataTemplate>
-  
-  <DataTemplate DataType="{x:Type m:JobListViewModel}">
-    <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
-      <ListBox ItemsSource="{Binding Jobs}"/>
-    </ScrollViewer>
-  </DataTemplate>
-  
-  <DataTemplate DataType="{x:Type m:JobViewModel}">
-    <StackPanel Orientation="Vertical" Background="LightGreen">
-      <Label Content="{Binding Name}"/>
-      <ListBox ItemsSource="{Binding Tasks}" Background="Transparent" BorderThickness="0">
-        <ListBox.ItemsPanel>
-          <ItemsPanelTemplate>
-            <StackPanel Orientation="Horizontal"/>
-          </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-      </ListBox>
-    </StackPanel>
-  </DataTemplate>
-  
-  <DataTemplate DataType="{x:Type m:TaskViewModel}">
-    <Label Content="{Binding Name}" Background="LightYellow"></Label>
-  </DataTemplate>
+                    xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
+                    xmlns:dh="clr-namespace:GongWPFDemo.DropHandlers">
+    <dh:JobListViewDragHandler x:Key="JobListViewDragHandler"/>
+    <dh:JobViewDragHandler x:Key="JobViewDragHandler"/>
+
+    <DataTemplate DataType="{x:Type m:MainWindowViewModel}">
+        <ContentControl Content="{Binding JobList}"/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type m:JobListViewModel}">
+        <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+            <ListBox ItemsSource="{Binding Jobs}"
+                     dd:DragDrop.IsDragSource="True"
+                     dd:DragDrop.IsDropTarget="True"
+                     dd:DragDrop.DropHandler="{StaticResource JobListViewDragHandler}"
+                     MinHeight="400"
+                     BorderThickness="5"
+                     />
+        </ScrollViewer>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type m:JobViewModel}">
+        <StackPanel Orientation="Vertical" Background="LightGreen">
+            <Label Content="{Binding Name}"/>
+            <ListBox ItemsSource="{Binding Tasks}" Background="Transparent" BorderThickness="0"
+                     dd:DragDrop.IsDragSource="True"
+                     dd:DragDrop.IsDropTarget="True"
+                     dd:DragDrop.DropHandler="{StaticResource JobViewDragHandler}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type m:TaskViewModel}">
+        <Label Content="{Binding Name}" Background="LightYellow"/>
+    </DataTemplate>
 </ResourceDictionary>
