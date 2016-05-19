@@ -7,10 +7,6 @@ using System.Text;
 namespace GongWPFDemo.ViewModels {
     internal class MainWindowViewModel {
         public MainWindowViewModel() {
-            this.JobList = new JobListViewModel();
-            var jobA = new JobJobViewModel("Job A");
-
-
             this.JobList = new JobListViewModel {
                 Jobs = new ObservableCollection<JobViewModel>() {
                     new JobViewModel("Job A") {
@@ -34,6 +30,6 @@ namespace GongWPFDemo.ViewModels {
                 }
             };
         }
-        public JobListViewModel JobList { get; protected set; }
+        public JobListViewModel JobList { get; set; }
     }
 }

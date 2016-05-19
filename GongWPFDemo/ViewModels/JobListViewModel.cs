@@ -6,9 +6,7 @@ using System.Text;
 
 namespace GongWPFDemo.ViewModels {
     internal class JobListViewModel {
-        public JobListViewModel() {
-            this.Jobs = new ObservableCollection<JobViewModel>();
-        }
-        public ObservableCollection<JobViewModel> Jobs { get; protected set; }
+        public JobListViewModel() { }
+        public ObservableCollection<JobViewModel> Jobs { get; set; }
     }
 }
