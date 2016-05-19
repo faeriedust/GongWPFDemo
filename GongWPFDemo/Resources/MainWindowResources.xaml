@@ -27,6 +27,7 @@
             <Label Content="{Binding Name}"/>
             <ListBox ItemsSource="{Binding Tasks}" Background="Transparent" BorderThickness="0"
                      Width="400"
+                     MinHeight="40"
                      dd:DragDrop.IsDragSource="True"
                      dd:DragDrop.IsDropTarget="True"
                      dd:DragDrop.DropHandler="{StaticResource JobViewDragHandler}">
@@ -40,6 +41,6 @@
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type m:TaskViewModel}">
-        <Label Content="{Binding Name}" Background="LightYellow"/>
+        <Label Height="40" Content="{Binding Name}" Background="LightYellow"/>
     </DataTemplate>
 </ResourceDictionary>
