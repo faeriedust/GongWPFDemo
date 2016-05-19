@@ -5,16 +5,27 @@
   <DataTemplate DataType="{x:Type m:MainWindowViewModel}">
     <ContentControl Content="{Binding JobList}"/>
   </DataTemplate>
+  
   <DataTemplate DataType="{x:Type m:JobListViewModel}">
-    <ListBox ItemsSource="{Binding Jobs}"/>
+    <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Auto">
+      <ListBox ItemsSource="{Binding Jobs}"/>
+    </ScrollViewer>
   </DataTemplate>
+  
   <DataTemplate DataType="{x:Type m:JobViewModel}">
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Background="LightGreen">
       <Label Content="{Binding Name}"/>
-      <ListBox ItemsSource="{Binding Tasks}"/>
+      <ListBox ItemsSource="{Binding Tasks}" Background="Transparent" BorderThickness="0">
+        <ListBox.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Horizontal"/>
+          </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+      </ListBox>
     </StackPanel>
   </DataTemplate>
+  
   <DataTemplate DataType="{x:Type m:TaskViewModel}">
-    <Label Content="{Binding Name}"/>
+    <Label Content="{Binding Name}" Background="LightYellow"></Label>
   </DataTemplate>
 </ResourceDictionary>
