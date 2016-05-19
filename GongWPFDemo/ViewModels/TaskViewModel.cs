@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GongWPFDemo.ViewModels {
   internal class TaskViewModel {
-    public TaskViewModel() { }
+    public TaskViewModel(string name) { this.Name = name; }
     public string Name { get; set; }
   }
 }

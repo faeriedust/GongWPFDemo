@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:GongWPFDemo"
         mc:Ignorable="d"
         Title="GongWPFDemo" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+  <Grid>
+    <Grid.Resources>
+      <ResourceDictionary Source="Resources/MainWindowResources.xaml"/>
+    </Grid.Resources>
+    <ContentControl Content="{StaticResource MainWindow}"/>
+  </Grid>
 </Window>

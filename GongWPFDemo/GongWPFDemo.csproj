@@ -68,9 +68,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Resources\JobListViewResources.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Resources\MainWindowResources.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
