@@ -12,18 +12,18 @@ namespace GongWPFDemo.ViewModels {
                     new JobViewModel("Job A") {
                         Tasks = new ObservableCollection<TaskViewModel>() {
                             new TaskViewModel("Task A"),
-                        }
-                    },
-                    new JobViewModel("Job B") {
-                        Tasks = new ObservableCollection<TaskViewModel>() {
                             new TaskViewModel("Task B"),
                             new TaskViewModel("Task C")
                         }
                     },
-                    new JobViewModel("Job C") {
+                    new JobViewModel("Job B") {
                         Tasks = new ObservableCollection<TaskViewModel>() {
                             new TaskViewModel("Task D"),
                             new TaskViewModel("Task E"),
+                        }
+                    },
+                    new JobViewModel("Job C") {
+                        Tasks = new ObservableCollection<TaskViewModel>() {
                             new TaskViewModel("Task F")
                         }
                     }
